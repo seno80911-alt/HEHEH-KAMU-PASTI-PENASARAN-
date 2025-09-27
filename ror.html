@@ -1,0 +1,127 @@
+
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Ungkap Perasaan</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+      z-index: 2;
+    }
+    h1 {
+      font-size: 2.2em;
+      color: #ff3366;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    }
+    p {
+      font-size: 1.2em;
+      color: #333;
+      margin-bottom: 25px;
+    }
+    button {
+      background: #ff3366;
+      border: none;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      transform: scale(1.1);
+      background: #ff6699;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.8);}
+      to {opacity: 1; transform: scale(1);}
+    }
+    @keyframes bounce {
+      0%, 100% {transform: translateY(0);}
+      50% {transform: translateY(-10px);}
+    }
+    /* Hati background */
+    .hearts {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .heart {
+      position: absolute;
+      width: 20px; height: 20px;
+      background: #ff3366;
+      transform: rotate(45deg);
+      animation: float 6s linear infinite;
+      opacity: 0.8;
+    }
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      background: #ff3366;
+      border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { top: 0; left: -10px; }
+    @keyframes float {
+      0% {transform: translateY(0) rotate(45deg); opacity: 1;}
+      100% {transform: translateY(-700px) rotate(45deg); opacity: 0;}
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts"></div>
+
+  <div class="card">
+    <h1> Aku Mau Jujur </h1>
+    <p>Aku udah lama nyimpan rasa ini... <br> Aku suka sama kamu </p>
+    <button onclick="jawaban()">Jawab ya </button>
+  </div>
+
+  <script>
+    // Banyak hati acak
+    function createHeart(){
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.width = heart.style.height = (Math.random()*20+10) + 'px';
+      heart.style.background = ['#ff3366','#ff6699','#ff99cc'][Math.floor(Math.random()*3)];
+      document.querySelector('.hearts').appendChild(heart);
+      setTimeout(()=>heart.remove(), 6000);
+    }
+    setInterval(createHeart, 300);
+
+    // Respon tombol
+    function jawaban(){
+      let respon = confirm('Mau nggak jadi pacarku? ');
+      if(respon){
+        alert('Yeay! Aku bahagia banget ');
+      } else {
+        alert('Gapapa, yang penting aku sudah jujur ');
+      }
+    }
+  </script>
+</body>
+</html>
